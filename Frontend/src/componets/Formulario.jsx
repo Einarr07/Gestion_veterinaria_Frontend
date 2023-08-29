@@ -1,6 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
-import { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthProvider";
 import axios from "axios";
@@ -8,7 +6,7 @@ import Mensaje from "./Alertas/Mensaje";
 import { useForm, Controller } from "react-hook-form";
 
 export const Formulario = ({ paciente }) => {
-  const { handleSubmit: onSubmitForm, control, errors } = useForm();
+  const { handleSubmit, control, formState: { errors } } = useForm();
   const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
   const [mensaje, setMensaje] = useState({});
@@ -26,19 +24,38 @@ export const Formulario = ({ paciente }) => {
     sintomas: paciente?.sintomas || "",
   });
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+  // Asegúrate de que form.sintomas esté definido antes de acceder a su longitud
+  const [sintomasLength, setSintomasLength] = useState(form.sintomas.length);
+
+  // Función para manejar cambios en el campo de síntomas
+  const handleSintomasChange = (e) => {
+    const newValue = e.target.value;
+    // Limitar la longitud a 150 caracteres
+    if (newValue.length <= 150) {
+      setForm({
+        ...form,
+        sintomas: newValue,
+        nombre:newValue,
+        propietario:newValue,
+        email:newValue,
+        celular:newValue,
+        salida:newValue,
+        convencional: newValue
+
+      });
+      //setSintomasLength(newValue.length);
+    }
   };
+
+
 
   useEffect(() => {
     console.log(errors);
   }, [errors]);
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+  const handleFormSubmit = async(e) => {
+    console.log(form)
+    delete form.id;
 
     if (paciente?._id) {
       const token = localStorage.getItem("token");
@@ -75,7 +92,7 @@ export const Formulario = ({ paciente }) => {
   };
 
   return (
-    <form onSubmit={onSubmitForm(handleFormSubmit)}>
+    <form onSubmit={handleSubmit(handleFormSubmit)}>
       {Object.keys(mensaje).length > 0 && (
         <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>
       )}
@@ -91,6 +108,7 @@ export const Formulario = ({ paciente }) => {
         <Controller
           name="nombre"
           control={control}
+          onChange={handleSintomasChange}
           defaultValue=""
           rules={{
             required: "Nombre de la mascota es requerido",
@@ -106,13 +124,14 @@ export const Formulario = ({ paciente }) => {
           render={({ field }) => (
             <div>
               <input
+                {...field}
                 id="nombre"
                 type="text"
                 className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${
                   errors?.nombre ? "border-red-500" : ""
                 }`}
                 placeholder="nombre de la mascota"
-                {...field}
+                maxLength={20}
               />
               {errors?.nombre && (
                 <p className="text-red-500">
@@ -125,7 +144,6 @@ export const Formulario = ({ paciente }) => {
           )}
         />
       </div>
-      {console.log(errors)}
 
       {/* Campo de propietario */}
       <div>
@@ -138,6 +156,7 @@ export const Formulario = ({ paciente }) => {
         <Controller
           name="propietario"
           control={control}
+          onChange={handleSintomasChange}
           defaultValue=""
           rules={{
             required: "Nombre del propietario es requerido",
@@ -153,13 +172,13 @@ export const Formulario = ({ paciente }) => {
           render={({ field }) => (
             <div>
               <input
+                {...field}
                 id="propietario"
                 type="text"
                 className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${
                   errors?.propietario ? "border-red-500" : ""
                 }`}
                 placeholder="nombre del propietario"
-                {...field}
               />
               {errors?.propietario && (
                 <p className="text-red-500">{errors.propietario.message}</p>
@@ -180,6 +199,7 @@ export const Formulario = ({ paciente }) => {
         <Controller
           name="email"
           control={control}
+          onChange={handleSintomasChange}
           defaultValue=""
           rules={{
             required: "Email es requerido",
@@ -191,13 +211,13 @@ export const Formulario = ({ paciente }) => {
           render={({ field }) => (
             <div>
               <input
+                {...field}
                 id="email"
                 type="email"
                 className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${
                   errors?.email ? "border-red-500" : ""
                 }`}
                 placeholder="email del propietario"
-                {...field}
               />
               {errors?.email && (
                 <p className="text-red-500">{errors.email.message}</p>
@@ -218,6 +238,7 @@ export const Formulario = ({ paciente }) => {
         <Controller
           name="celular"
           control={control}
+          onChange={handleSintomasChange}
           defaultValue=""
           rules={{
             required: "Número de celular es requerido",
@@ -229,13 +250,13 @@ export const Formulario = ({ paciente }) => {
           render={({ field }) => (
             <div>
               <input
+                {...field}
                 id="celular"
                 type="number"
                 className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${
                   errors?.celular ? "border-red-500" : ""
                 }`}
                 placeholder="celular del propietario"
-                {...field}
               />
               {errors?.celular && (
                 <p className="text-red-500">{errors.celular.message}</p>
@@ -256,6 +277,7 @@ export const Formulario = ({ paciente }) => {
         <Controller
           name="convencional"
           control={control}
+          onChange={handleSintomasChange}
           defaultValue=""
           rules={{
             pattern: {
@@ -266,13 +288,13 @@ export const Formulario = ({ paciente }) => {
           render={({ field }) => (
             <div>
               <input
+                {...field}
                 id="convencional"
                 type="number"
                 className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${
                   errors?.convencional ? "border-red-500" : ""
                 }`}
                 placeholder="convencional del propietario"
-                {...field}
               />
               {errors?.convencional && (
                 <p className="text-red-500">{errors.convencional.message}</p>
@@ -293,19 +315,20 @@ export const Formulario = ({ paciente }) => {
         <Controller
           name="salida"
           control={control}
+          onChange={handleSintomasChange}
           defaultValue=""
           rules={{
             required: "Fecha de salida es requerida",
           }}          
           render={({ field }) => (
             <input
+              {...field}
               id="salida"
               type="date"
               className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${
                 errors?.salida ? "border-red-500" : ""
               }`}
               placeholder="salida"
-              {...field}
             />
           )}
         />
@@ -329,8 +352,13 @@ export const Formulario = ({ paciente }) => {
           placeholder="Ingrese los síntomas de la mascota"
           name="sintomas"
           value={form.sintomas}
-          onChange={handleChange}
+          onChange={handleSintomasChange}
+          maxLength={150}
         />
+        {/* Mostrar la longitud actual de los síntomas */}
+        <p className="text-gray-500 text-sm text-right">
+          {sintomasLength}/150 caracteres
+        </p>
       </div>
 
       <input

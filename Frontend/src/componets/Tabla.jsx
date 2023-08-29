@@ -21,7 +21,7 @@ const Tabla = () => {
             const respuesta = await axios.get(url, options)
             setPacientes(respuesta.data, ...pacientes)
         } catch (error) {
-            console.log(error);
+            console.warning(error);
         }
     }
 
@@ -81,7 +81,7 @@ const Tabla = () => {
                                         <td>{paciente.email}</td>
                                         <td>{paciente.celular}</td>
                                         <td>
-                                            <span class="bg-blue-100 text-green-500 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{paciente.estado && "activo"}</span>
+                                            <span className="bg-blue-100 text-green-500 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{paciente.estado && "activo"}</span>
                                         </td>
                                         <td className='py-2 text-center'>
                                             <MdNoteAdd
