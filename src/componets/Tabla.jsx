@@ -68,11 +68,11 @@ const Tabla = () => {
             name: 'Acciones',
             cell: row => (
                 <>
-                    <MdNoteAdd
+                    <MdInfo
                         className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
                         onClick={() => navigate(`/dashboard/visualizar/${row._id}`)}
                     />
-                    <MdInfo
+                    <MdNoteAdd
                         className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
                         onClick={() => navigate(`/dashboard/actualizar/${row._id}`)}
                     />
