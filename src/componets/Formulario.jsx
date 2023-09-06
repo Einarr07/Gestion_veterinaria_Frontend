@@ -13,6 +13,24 @@ export const Formulario = ({ paciente }) => {
     // Configuración de React Hook Form
     const { control, handleSubmit, formState: { errors } } = useForm();
 
+    // Obtiene la fecha actual en el formato requerido por el campo de fecha
+    const obtenerFechaActual = () => {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        let mm = today.getMonth() + 1; // Los meses comienzan desde 0
+        let dd = today.getDate();
+
+        if (mm < 10) {
+            mm = `0${mm}`;
+        }
+
+        if (dd < 10) {
+            dd = `0${dd}`;
+        }
+
+        return `${yyyy}-${mm}-${dd}`;
+    };
+
     const onSubmit = async (data) => {
         try {
             if (paciente?._id) {
@@ -33,7 +51,7 @@ export const Formulario = ({ paciente }) => {
                 const url = `${import.meta.env.VITE_BACKEND_URL}/paciente/registro`;
                 const options = {
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application.json',
                         Authorization: `Bearer ${token}`
                     }
                 };
@@ -47,6 +65,7 @@ export const Formulario = ({ paciente }) => {
             }, 3000);
         }
     };
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -116,7 +135,7 @@ export const Formulario = ({ paciente }) => {
                             id='propietario'
                             type="text"
                             className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${errors.propietario ? 'border-red-500' : ''}`}
-                            placeholder='Nombre del propietario'
+                            placeholder='nombre del propietario'
                             {...field}
                         />
                     )}
@@ -127,7 +146,7 @@ export const Formulario = ({ paciente }) => {
             <div>
                 <label
                     htmlFor='email:'
-                    className='text-gray-700 uppercase font-bold text-sm'>Correo electrónico: </label>
+                    className='text-gray-700 uppercase font-bold text-sm'>Email: </label>
                 <Controller
                     name='email'
                     control={control}
@@ -144,7 +163,7 @@ export const Formulario = ({ paciente }) => {
                             id='email'
                             type="email"
                             className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${errors.email ? 'border-red-500' : ''}`}
-                            placeholder='Correo electrónico del propietario'
+                            placeholder='email del propietario'
                             {...field}
                         />
                     )}
@@ -171,7 +190,7 @@ export const Formulario = ({ paciente }) => {
                             id='celular'
                             type="text"
                             className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${errors.celular ? 'border-red-500' : ''}`}
-                            placeholder='Celular del propietario'
+                            placeholder='celular del propietario'
                             {...field}
                         />
                     )}
@@ -199,7 +218,7 @@ export const Formulario = ({ paciente }) => {
                             id='convencional'
                             type="text"
                             className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${errors.convencional ? 'border-red-500' : ''}`}
-                            placeholder='Convencional del propietario'
+                            placeholder='convencional del propietario'
                             {...field}
                         />
                     )}
@@ -222,6 +241,7 @@ export const Formulario = ({ paciente }) => {
                             type="date"
                             className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${errors.salida ? 'border-red-500' : ''}`}
                             placeholder='salida'
+                            min={obtenerFechaActual()} // Configura la fecha mínima como la fecha actual
                             {...field}
                         />
                     )}

@@ -83,15 +83,15 @@ export const Register = () => {
 
     return (
         <>
-            <div className="bg-white flex justify-center items-center w-1/2">
-                <div className="md:w-4/5 sm:w-full">
-                    {Object.keys(mensaje).length > 0 && <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>}
-                    <h1 className="text-3xl font-semibold mb-2 text-center uppercase  text-gray-500">Bienvenido</h1>
-                    <small className="text-gray-400 block my-4 text-sm">Ingresa tus datos para poder registrarte.</small>
+            <div className="bg-white md:flex justify-center items-center w-full">
+            <div className="md:w-1/2 sm:w-full p-4">
+                {Object.keys(mensaje).length > 0 && <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>}
+                <h1 className="text-3xl font-semibold mb-2 text-center uppercase  text-gray-500">Bienvenido</h1>
+                <small className="text-gray-400 block my-4 text-sm">Ingresa tus datos para poder registrarte.</small>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label className="mb-2 block text-sm font-semibold" htmlFor="nombre">
-                                Nombre ({nombreLength}/30 caracteres):
+                                Nombre ({nombreLength}/30):
                             </label>
                             <input type="text" id="nombre" name='nombre'
                                 value={form.nombre || ""} onChange={handleChange}
@@ -100,7 +100,7 @@ export const Register = () => {
 
                         <div className="mb-3">
                             <label className="mb-2 block text-sm font-semibold" htmlFor="apellido">
-                                Apellido ({apellidoLength}/30 caracteres):
+                                Apellido ({apellidoLength}/30):
                             </label>
                             <input type="text" id="apellido" name='apellido'
                                 value={form.apellido || ""} onChange={handleChange}
@@ -109,7 +109,7 @@ export const Register = () => {
 
                         <div className="mb-3">
                             <label className="mb-2 block text-sm font-semibold" htmlFor="direccion">
-                                Dirección ({direccionLength}/60 caracteres):
+                                Dirección ({direccionLength}/60):
                             </label>
                             <input type="text" id="direccion" name='direccion'
                                 value={form.direccion || ""} onChange={handleChange}
@@ -118,7 +118,7 @@ export const Register = () => {
 
                         <div className="mb-3">
                             <label className="mb-2 block text-sm font-semibold" htmlFor="telefono">
-                                Teléfono ({telefonoLength}/10 caracteres):
+                                Teléfono ({telefonoLength}/10):
                             </label>
                             <input type="tel" id="telefono" name='telefono'
                                 value={form.telefono || ""} onChange={handleChange}
@@ -126,14 +126,14 @@ export const Register = () => {
                         </div>
 
                         <div className="mb-3">
-                            <label className="mb-2 block text-sm font-semibold" htmlFor="email">Email ({emailLength}/50 caracteres):</label>
+                            <label className="mb-2 block text-sm font-semibold" htmlFor="email">Email ({emailLength}/50):</label>
                             <input type="email" id="email" name='email'
                             value={form.email || ""} onChange={handleChange}
                             placeholder="Ingresa tu email" className="block w-full rounded-md border border-gray-300 focus:border-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-700 py-1 px-1.5 text-gray-500" required />
                         </div>
 
                         <div className="mb-3">
-                            <label className="mb-2 block text-sm font-semibold" htmlFor="password">Contraseña ({passwordLength}/20 caracteres):</label>
+                            <label className="mb-2 block text-sm font-semibold" htmlFor="password">Contraseña ({passwordLength}/20):</label>
                             <input type="password" id="password" name='password'
                                 value={form.password || ""} onChange={handleChange}
                                 placeholder="********************" className="block w-full rounded-md border border-gray-300 focus:border-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-700 py-1 px-1.5 text-gray-500" required />
@@ -147,8 +147,8 @@ export const Register = () => {
                     <div className="mt-5 text-xs border-b-2 py-4 "></div>
 
                     <div className="mt-3 text-sm flex justify-between items-center">
-                        <p>¿Ya tienes una cuenta? Dirígete al login para poder iniciar sesión.</p>
-                        <Link to="/login" className="py-2 px-5 bg-gray-500 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 ">Login</Link>
+                        <p>¿Ya tienes una cuenta? Dirígete a iniciar sesión para poder ingresar.</p>
+                        <Link to="/login" className="py-2 px-5 bg-gray-500 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 ">Iniciar sesión</Link>
                     </div>
                 </div>
             </div>

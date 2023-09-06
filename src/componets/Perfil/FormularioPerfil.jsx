@@ -1,34 +1,36 @@
-import { useContext, useState } from "react"
-import AuthContext from "../../context/AuthProvider"
-import Mensaje from "../Alertas/Mensaje"
+import { useContext, useState } from "react";
+import AuthContext from "../../context/AuthProvider";
+import Mensaje from "../Alertas/Mensaje";
 
 const FormularioPerfil = () => {
-    const { auth, actualizarPerfil } = useContext(AuthContext)
-    const [mensaje, setMensaje] = useState({})
+    const { auth, actualizarPerfil } = useContext(AuthContext);
+    const [mensaje, setMensaje] = useState({});
     const [form, setform] = useState({
         id: auth._id,
         nombre: auth.nombre || "",
         apellido: auth.apellido || "",
         direccion: auth.direccion || "",
         telefono: auth.telefono || "",
-        email: auth.email || ""
-    })
+        email: auth.email || "",
+    });
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         if (Object.values(form).includes("")) {
-            setMensaje({ respuesta: "Todos los campos deben ser ingresados", tipo: false })
+            setMensaje({ respuesta: "Todos los campos deben ser ingresados", tipo: false });
             setTimeout(() => {
-                setMensaje({})
+                setMensaje({});
             }, 3000);
-            return
+            return;
         }
-        const resultado = await actualizarPerfil(form)
-        setMensaje(resultado)
+        const resultado = await actualizarPerfil(form);
+        setMensaje(resultado);
+
+        // Recargar la página después de 3 segundos
         setTimeout(() => {
-            setMensaje({})
+            window.location.reload();
         }, 3000);
-    }
+    };
 
     const handleChange = (e) => {
         // Validar la longitud máxima para los campos de dirección, correo, nombre y apellido
@@ -66,7 +68,9 @@ const FormularioPerfil = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            {Object.keys(mensaje).length > 0 && <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>}
+            {Object.keys(mensaje).length > 0 && (
+                <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>
+            )}
 
             <div>
                 <label

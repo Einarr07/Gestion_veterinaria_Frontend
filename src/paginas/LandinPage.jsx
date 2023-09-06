@@ -27,7 +27,7 @@ export const LandinPage = () => {
                         <h1 className='text-2xl font-bold dark:text-white'>VETERINARIA</h1>
                         <ul className='flex items-center'>
                             <li><img onClick={()=>setdarkMode(!darkMode)} className='cursor-pointer' src={logoDarkMode} alt="logo" width={40} height={40}/></li>
-                            <li><Link to="/login" className='bg-gray-600 text-slate-400 px-6 py-2 rounded-full ml-8 hover:bg-gray-900 hover:text-white' href="#">Inicio de sesión</Link></li>
+                            <li><Link to="/login" className='bg-gray-600 text-slate-400 px-6 py-2 rounded-full ml-8 hover:bg-gray-900 hover:text-white' href="#">Iniciar sesión</Link></li>
                         </ul>
                     </nav>
 
