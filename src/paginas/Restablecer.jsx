@@ -63,13 +63,13 @@ const Restablecer = () => {
                 <form className='w-full' onSubmit={handleSubmit}>
                     <div className="mb-1">
                         <label className="mb-2 block text-sm font-semibold">Contraseña</label>
-                        <input type="password" placeholder="Enter your password" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                        <input type="password" placeholder="Ingresa tu nueva contraseña" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
                             value={form.password || ""}
                             name='password'
                             onChange={handleChange}
                         />
                         <label className="mb-2 block text-sm font-semibold">Confirmar Contraseña</label>
-                        <input type="password" placeholder="Repeat your password" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                        <input type="password" placeholder="Repite tu nueva contraseña" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
                             value={form.confirmpassword || ""}
                             name='confirmpassword'
                             onChange={handleChange}

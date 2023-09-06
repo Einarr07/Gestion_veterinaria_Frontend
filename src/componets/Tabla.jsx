@@ -6,27 +6,31 @@ import Mensaje from "./Alertas/Mensaje";
 import DataTable from 'react-data-table-component';
 
 const Tabla = () => {
+    
     const handleDelete = async (id) => {
         try {
-            const confirmar = confirm("Vas a registrar la salida de un paciente, ¿Estás seguro de realizar esta acción?")
+            const confirmar = window.confirm("Vas a registrar la salida de un paciente, ¿Estás seguro de realizar esta acción?");
             if (confirmar) {
-                const token = localStorage.getItem('token')
-                const url = `${import.meta.env.VITE_BACKEND_URL}/paciente/eliminar/${id}`
+                const token = localStorage.getItem('token');
+                const url = `${import.meta.env.VITE_BACKEND_URL}/paciente/eliminar/${id}`;
                 const headers = {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
-                }
+                };
                 const data = {
                     salida: new Date().toString()
-                }
+                };
                 await axios.delete(url, { headers, data });
-                listarPacientes()
+                listarPacientes();
+                toast.success("Paciente eliminado exitosamente"); // Muestra una notificación de éxito
             }
         }
         catch (error) {
             console.log(error);
+            toast.error("Hubo un error al eliminar el paciente"); // Muestra una notificación de error
         }
     }
+    
 
     // Definir las columnas para DataTable
     const columns = [
