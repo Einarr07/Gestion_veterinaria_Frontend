@@ -111,13 +111,13 @@ const Tabla = () => {
         listarPacientes()
     }, [])
 
-    const filteredPacientes = pacientes.filter(
-        (paciente) =>
-            paciente.nombre.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            paciente.propietario.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            paciente.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            paciente.celular.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredPacientes = pacientes.filter((paciente) =>
+    (paciente.nombre ?? "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (paciente.propietario ?? "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (paciente.email ?? "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (paciente.celular ?? "").toLowerCase().includes(searchQuery.toLowerCase())
+);
+
 
 
     return (
