@@ -46,7 +46,7 @@ const Tabla = () => {
             sortable: true,
         },
         {
-            name: 'Email',
+            name: 'Correo',
             selector: 'email',
             sortable: true,
         },

@@ -56,7 +56,7 @@ const Visualizar = () => {
                                         {paciente.propietario}
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">
-                                        <span className="text-gray-600 uppercase font-bold">* Email: </span>
+                                        <span className="text-gray-600 uppercase font-bold">* Correo electrónico: </span>
                                         {paciente.email}
                                     </p>
                                     <p className="text-md text-gray-00 mt-4">

@@ -131,7 +131,7 @@ const FormularioPerfil = () => {
             <div>
                 <label
                     htmlFor='email'
-                    className='text-gray-700 uppercase font-bold text-sm'>Email: </label>
+                    className='text-gray-700 uppercase font-bold text-sm'>Correo electrónico: </label>
                 <input
                     id='email'
                     type="text"

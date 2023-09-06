@@ -24,7 +24,7 @@ export const CardPerfil = () => {
                 <b>Teléfono:</b><p className="inline-block ml-3">{auth.telefono}</p>
             </div>
             <div className="self-start">
-                <b>Email:</b><p className="inline-block ml-3">{auth.email}</p>
+                <b>Correo electrónico:</b><p className="inline-block ml-3">{auth.email}</p>
             </div>
         </div>
     )

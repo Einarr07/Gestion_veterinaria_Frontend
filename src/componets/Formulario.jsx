@@ -116,7 +116,7 @@ export const Formulario = ({ paciente }) => {
                             id='propietario'
                             type="text"
                             className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${errors.propietario ? 'border-red-500' : ''}`}
-                            placeholder='nombre del propietario'
+                            placeholder='Nombre del propietario'
                             {...field}
                         />
                     )}
@@ -127,7 +127,7 @@ export const Formulario = ({ paciente }) => {
             <div>
                 <label
                     htmlFor='email:'
-                    className='text-gray-700 uppercase font-bold text-sm'>Email: </label>
+                    className='text-gray-700 uppercase font-bold text-sm'>Correo electrónico: </label>
                 <Controller
                     name='email'
                     control={control}
@@ -144,7 +144,7 @@ export const Formulario = ({ paciente }) => {
                             id='email'
                             type="email"
                             className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${errors.email ? 'border-red-500' : ''}`}
-                            placeholder='email del propietario'
+                            placeholder='Correo electrónico del propietario'
                             {...field}
                         />
                     )}
@@ -171,7 +171,7 @@ export const Formulario = ({ paciente }) => {
                             id='celular'
                             type="text"
                             className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${errors.celular ? 'border-red-500' : ''}`}
-                            placeholder='celular del propietario'
+                            placeholder='Celular del propietario'
                             {...field}
                         />
                     )}
@@ -199,7 +199,7 @@ export const Formulario = ({ paciente }) => {
                             id='convencional'
                             type="text"
                             className={`border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-5 ${errors.convencional ? 'border-red-500' : ''}`}
-                            placeholder='convencional del propietario'
+                            placeholder='Convencional del propietario'
                             {...field}
                         />
                     )}
