@@ -51,7 +51,7 @@ export const Formulario = ({ paciente }) => {
                 const url = `${import.meta.env.VITE_BACKEND_URL}/paciente/registro`;
                 const options = {
                     headers: {
-                        'Content-Type': 'application.json',
+                        'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`
                     }
                 };
@@ -65,7 +65,6 @@ export const Formulario = ({ paciente }) => {
             }, 3000);
         }
     };
-
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
